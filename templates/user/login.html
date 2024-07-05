@@ -1,0 +1,26 @@
+{% extends 'partials/base.html' %}
+{% block title %}登陆页{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="mdui-col-md-2"></div>
+<div style="padding-top: 60pt;" class = "mdui-col-md-8">
+    <div class="mdui-card mdui-hoverable" style="opacity: 0.95;" >
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">登录</div>
+        </div>
+        <!-- 卡片的内容 -->
+        <div class="mdui-card-content">
+            <form method="POST" >
+                {% csrf_token %}
+                {{form |crispy}}
+                <div class="mdui-float-right" style="padding-bottom: 15pt;" >
+                    <input class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-pink" type="submit" style="font-weight: 600;" value="登陆">
+                    <a class="mdui-btn mdui-btn-raised mdui-ripple mdui-m-l-1" style="font-weight: 600;" href="">忘记密码？</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

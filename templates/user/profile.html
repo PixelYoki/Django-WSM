@@ -1,0 +1,47 @@
+{% extends 'partials/base.html' %}
+{% block title %}客户信息详情页{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="mdui-col-md-2"></div>
+<div style="padding-top: 60pt;" class = "mdui-col-md-8">
+    <div class="mdui-card mdui-hoverable" style="opacity: 0.95;" >
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">
+                客户信息详情
+                <a href="{% url 'user-profile-update'%}" mdui-tooltip="{content: '编辑'}" class="mdui-btn mdui-btn-icon mdui-ripple">
+                    <i class="mdui-icon material-icons">edit</i>
+                </a>
+            </div>
+        </div>
+        <!-- 卡片的内容 -->
+        <div class="mdui-card-content">
+            <div class="mdui-row">
+                <div class="mdui-col-xs-12 mdui-col-md-8">
+                    <ul class="mdui-list">
+                        <li class="mdui-list-item mdui-ripple">
+                            <i class="mdui-list-item-icon mdui-icon material-icons">account_circle</i>
+                            <div class="mdui-list-item-content">{{user.username}}</div>
+                        </li>
+                        <li class="mdui-list-item mdui-ripple">
+                            <i class="mdui-list-item-icon mdui-icon material-icons">email</i>
+                            <div class="mdui-list-item-content">{{user.email}}</div>
+                        </li>
+                        <li class="mdui-list-item mdui-ripple">
+                            <i class="mdui-list-item-icon mdui-icon material-icons">phone</i>
+                            <div class="mdui-list-item-content">{{user.profile.phone}}</div>
+                        </li>
+                        <li class="mdui-list-item mdui-ripple">
+                            <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                            <div class="mdui-list-item-content">{{user.profile.address}}</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mdui-col-xs-12 mdui-col-sm-4">
+                    <img class="mdui-img-rounded img-thumbnail" src="{{user.profile.image.url}}" alt="profile-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

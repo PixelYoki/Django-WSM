@@ -1,0 +1,78 @@
+<!-- 在所有设备上，每列都是 50% 宽度。 -->
+<div class="mdui-row" style="padding-top: 40pt;">
+    <div class="mdui-col-xs-12 mdui-col-md-4 " style="padding-top: 20pt;">
+        <div class="mdui-card mdui-hoverable" style="opacity: 0.9;">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">信息</div>
+            </div>
+              <!-- 卡片的内容 -->
+            <div class="mdui-card-content">
+                <marquee behavior="" direction="">
+                    {% for message in messages %}
+                        {% if message.tags %}
+                        <p class="alert alert-{{message.tags}}" style="font-size: large;">{% endif %}
+                            {{message}}
+                        </p>
+                        {% empty %}
+                        <h3 class="my-4">暂无信息</h3>
+                    {% endfor %}
+                </marquee>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mdui-col-xs-12 mdui-col-md-8 " style="padding-top: 20pt;">
+        <div class="mdui-card mdui-hoverable" style="opacity: 0.9;">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">面板统计</div>
+            </div>
+              <!-- 卡片的内容 -->
+            <div class="mdui-card-content">
+                <div class = "mdui-row" style="text-align: center;">
+                    <div class="mdui-col-xs-12 mdui-col-md-4 ">
+                        <a href="{% url 'dashboard-staff'%}" style="text-decoration: none;">
+                            <div class = "mdui-card">
+                                <div class="mdui-card-primary">
+                                    <div class="mdui-card-primary-title">员工</div>
+                                </div>
+            
+                                <div class="mdui-card">
+                                    <h3>{{workers_count}}</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="mdui-col-xs-12 mdui-col-md-4 ">
+                        <a href="{% url 'dashboard-product'%}" style="text-decoration: none;">
+                            <div class = "mdui-card">
+                                <div class="mdui-card-primary">
+                                    <div class="mdui-card-primary-title mdui-center">产品</div>
+                                </div>
+            
+                                <div class="mdui-card">
+                                    <h3>{{products_count}}</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="mdui-col-xs-12 mdui-col-md-4 ">
+                        <a href="{% url 'dashboard-order'%}" style="text-decoration: none;">
+                            <div class = "mdui-card">
+                                <div class="mdui-card-primary">
+                                    <div class="mdui-card-primary-title mdui-center">订单</div>
+                                </div>
+            
+                                <div class="mdui-card">
+                                    <h3>{{orders_count}}</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

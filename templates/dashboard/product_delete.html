@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% block title %}删除商品{% endblock %}
+{% block content %}
+
+<div class="mdui-col-md-2"></div>
+<div style="padding-top: 60pt;" class = "mdui-col-md-8">
+    <div class="mdui-card mdui-hoverable" style="opacity: 0.95;" >
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">删除商品</div>
+        </div>
+        <!-- 卡片的内容 -->
+        <div class="mdui-card-content">
+            <div class="alert alert-danger">
+                <h4>你确定要删除【{{item.name}}】这个商品?</h4>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <!--{{item}}-->
+                <div class="mdui-float-right" style="padding-bottom: 15pt;">
+                    <a class="mdui-btn mdui-btn-raised mdui-m-r-1"
+                       style="font-weight: 600;"
+                       href="{% url 'dashboard-product' %}">取消</a>
+
+                    <input class="mdui-btn mdui-btn-raised mdui-color-pink"
+                           style="font-weight: 600;" 
+                           type="submit" value="狠心删除">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

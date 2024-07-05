@@ -1,0 +1,64 @@
+{% extends  'partials/base.html' %}
+{%  block title %}商品信息 {% endblock%}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'partials/topside.html' %}
+
+<div class="mdui-dialog" id="add-product">
+    <div class="mdui-dialog-title">添加新商品</div>
+    <div class="mdui-dialog-content">
+        <form method="post" name="form-add">
+            {% csrf_token %}
+            {{form|crispy}}
+            <div class="mdui-float-right" style="padding-bottom: 15pt;">
+                <button class="mdui-btn mdui-ripple mdui-color-pink">添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mdui-card mdui-hoverable" style="opacity: 0.95; margin-top: 20pt" >
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">
+            商品信息
+            <button mdui-dialog="{target: '#add-product'}" mdui-tooltip="{content: '添加新商品'}" 
+               class="mdui-btn mdui-btn-dense mdui-btn-icon mdui-ripple mdui-color-pink">
+                <i class="mdui-icon material-icons">add</i>
+            </button>
+        </div>
+    </div>
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-media mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>分类</th>
+                <th>数量</th>
+                <th class="mdui-table-col-numeric">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.get_category_display}}</td>
+                <td>{{item.quantity}}</td>
+                <td style="width: 200pt;">
+                    <a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-light-blue" 
+                       style="font-weight: 500;"
+                       href="{% url 'dashboard-product-update' item.id %}">编辑</a>
+                    <a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-pink"
+                       style="font-weight: 600;"
+                       href="{% url 'dashboard-product-delete' item.id %}">删除</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

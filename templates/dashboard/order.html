@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% block title %}订单信息{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'partials/topside.html' %}
+
+<div class="mdui-card mdui-hoverable" style="opacity: 0.95; margin-top: 20pt" >
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">
+            订单信息
+        </div>
+    </div>
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-media mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+                <tr>
+                    <th>顾客</th>
+                    <th>商品</th>
+                    <th>分类</th>
+                    <th>数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.staff.username}}</td>
+                    <td>{{order.product.name}}</td>
+                    <td>{{order.product.get_category_display}}</td>
+                    <td>{{order.order_quantity}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

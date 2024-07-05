@@ -1,0 +1,54 @@
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="mdui-dialog" id="add-product">
+    <div class="mdui-dialog-title">添加新订单</div>
+    <div class="mdui-dialog-content">
+        <form method="post" name="form-add">
+            {% csrf_token %}
+            {{form|crispy}}
+            <div class="mdui-float-right" style="padding-bottom: 15pt;">
+                <button class="mdui-btn mdui-ripple mdui-color-pink">添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mdui-card mdui-hoverable" style="opacity: 0.95; margin-top: 60pt" >
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">
+            订单信息
+            <button mdui-dialog="{target: '#add-product'}" mdui-tooltip="{content: '添加新订单'}" 
+               class="mdui-btn mdui-btn-dense mdui-btn-icon mdui-ripple mdui-color-pink">
+                <i class="mdui-icon material-icons">add</i>
+            </button>
+        </div>
+    </div>
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-media mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+                <tr>
+                    <th scope="col">商品</th>
+                    <th scope="col">分类</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                {% if order.staff == user%}
+                <tr>
+                    <td>{{order.product.name}}</td>
+                    <td>{{order.product.get_category_display}}</td>
+                    <td>{{order.order_quantity}}</td>
+                    <td style="width: 150pt;">{{order.created_time}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

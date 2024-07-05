@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <!--Chartjs CDN-->
+    <script src="/static/js/chart.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="/static/css/mdui.min.css">
+    <script src="/static/js/mdui.min.js"></script>
+
+    <style>
+        body {
+            background-image: url("/static/img/concept_factory_low.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
+</head>
+
+<body class="mdui-theme-primary-indigo">
+{% include 'partials/nav.html' %}
+
+<div class="container">
+    {% block content %}
+
+
+    {% endblock %}
+</div>
+
+
+<footer style="height: 30pt;">
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{% extends 'partials/base.html' %}
+{% block title %}客户信息列表{% endblock %}
+
+{% block content %}
+{% include 'partials/topside.html' %}
+
+<div class="mdui-card mdui-hoverable" style="opacity: 0.95; margin-top: 20pt" >
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">
+            客户信息
+        </div>
+    </div>
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-media mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>用户名</th>
+                    <th>电话号</th>
+                    <th>邮箱</th>
+                    <th>地址</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for worker in workers %}
+                <tr>
+                    <th><a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-light-blue"
+                            href="{%url 'dashboard-staff-detail' worker.id %}">查看</a></th>
+                    <td>{{worker.username}}</td>
+                    <td>{{worker.profile.phone}}</td>
+                    <td>{{worker.email}}</td>
+                    <td>{{worker.profile.address}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
